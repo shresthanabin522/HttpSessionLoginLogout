@@ -14,12 +14,17 @@ public class ProfileServlet extends HttpServlet {
 
         PrintWriter printWriter = response.getWriter();
 
-        request.getRequestDispatcher("link.jsp").include(request, response);
-        HttpSession session = request.getSession(true);
 
-        if (session != null && session.getAttribute("name")!=null) {
+        request.getRequestDispatcher("link.jsp").include(request, response);
+        HttpSession session = request.getSession(false);
+
+        if ((session != null) && session.getAttribute("name")!=null) {
             String name = (String) session.getAttribute("name");
-            printWriter.print("<br>Hello, " + name + " Welcome to Profile");
+
+           printWriter.print("<br><br>Hello, " + name + " Welcome to Profile");
+
+           request.setAttribute("name", name);
+           request.getRequestDispatcher("info.jsp").include(request,response);
 
         } else {
             printWriter.print("<br>Please login first!!!...");

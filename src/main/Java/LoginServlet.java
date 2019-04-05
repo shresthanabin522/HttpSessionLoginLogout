@@ -18,13 +18,15 @@ public class LoginServlet extends HttpServlet {
         String name = request.getParameter("name");
         String password = request.getParameter("password");
 
+
         if(name.equals("admin") && password.equals("admin")){
 
-            printWriter.print("<br> Welcome  "+name);
+            printWriter.print("<br>You are successfully Login.... "+name);
 
-            HttpSession session = request.getSession(true);
+            HttpSession session = request.getSession();
             session.setAttribute("name",name);
-            //session.setMaxInactiveInterval(10);
+
+
 
         }
         else {
